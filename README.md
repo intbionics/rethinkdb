@@ -73,6 +73,8 @@ Generally, you will need
 
 Then, to build:
 
+    git checkout v2.4.x   # ssmith (https://github.com/rethinkdb/rethinkdb/issues/7033)
+
     ./configure --allow-fetch
     # or run ./configure --allow-fetch CXX=clang++
 
@@ -82,6 +84,17 @@ Then, to build:
     sudo make install
     # or run ./build/debug_clang/rethinkdb
 
+
+Install (ssmith):
+    ln -sf /usr/local/bin/rethinkdb /usr/bin/rethinkdb
+    sudo adduser rethinkdb
+    sudo cp /home/ssmith/rethinkdb/packaging/assets/init/rethinkdb /etc/init.d/rethinkdb 
+    cp /home/ssmith/rtx/rethinkdb_config/instance1.conf /etc/rethinkdb/instances.d/instance1.conf
+    rethinkdb create -d /mnt/rethinkdb
+    sudo chown -R rethinkdb rethinkdb
+    sudo chown -R rethinkdb /var/run/rethinkdb
+    sudo update-rc.d rethinkdb defaults
+    /etc/init.d/rethinkdb start
 
 Need help?
 ----------
